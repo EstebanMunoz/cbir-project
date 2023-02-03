@@ -36,16 +36,16 @@ def get_dataset_features(dataset_path, feature_extractor, **kwargs):
 
 
 if __name__ == '__main__':
-    holidays_dataset = 'src/holidays_dataset/database'
-    GPR1200_dataset = 'src/GPR1200_dataset'
+    holidays_dataset = '../datasets/holidays_dataset/database'
+    GPR1200_dataset = '../datasets/GPR1200_dataset'
     datasets = {'holidays': holidays_dataset, 'GPR1200': GPR1200_dataset}
 
     for dataset, path in datasets.items():
         print(f'Extracting {dataset} cnn features')
         cnn_dataset_features, img_names = get_dataset_features(path, 'cnn', **kwargs)
         cnn_dataset_features = cnn_dataset_features.reshape(len(img_names), 1024)
-        np.save(f'features/{dataset}_cnn_features', cnn_dataset_features)
-        with open(f'features/{dataset}_img_names.pickle', 'wb') as dir:
+        np.save(f'assets/features/{dataset}_cnn_features', cnn_dataset_features)
+        with open(f'assets/features/{dataset}_img_names.pickle', 'wb') as dir:
             pickle.dump(img_names, dir)
         print(f'{dataset} cnn features extracted')
 
@@ -53,6 +53,6 @@ if __name__ == '__main__':
         print()
         print(f'Extracting {dataset} handcrafted features')
         handcrafted_dataset_features, img_names = get_dataset_features(path, 'handcrafted', **kwargs)    
-        np.save(f'features/{dataset}_handcrafted_features', handcrafted_dataset_features)
+        np.save(f'assets/features/{dataset}_handcrafted_features', handcrafted_dataset_features)
         print(f'{dataset} handcrafted features extracted')
         print()

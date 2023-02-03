@@ -56,8 +56,8 @@ def same_class_imgs(img_name, img_dataset, dataset):
 def retrieve_imgs(img_name, img_dir, dataset, feature_extractor):
     img = load_img(os.path.join(img_dir, img_name))
     features = get_img_features(img, feature_extractor, **kwargs)
-    dataset_features = np.load(f'features/{dataset}_{feature_extractor}_features.npy')
-    with open(f'features/{dataset}_img_names.pickle', 'rb') as data:
+    dataset_features = np.load(f'assets/features/{dataset}_{feature_extractor}_features.npy')
+    with open(f'assets/features/{dataset}_img_names.pickle', 'rb') as data:
         img_names = pickle.load(data)
     
     # distances = handcrafted_distance(features, dataset_features, 1, 1, 0.0001)
